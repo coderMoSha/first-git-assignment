@@ -91,7 +91,59 @@
         android:inputType="date"
         android:padding="10dp"
         android:textColor="#000000"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:focusable="false"/>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dobInput"
+        android:orientation="horizontal"
+        android:id="@+id/genderRadioGroup"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#794F6565"
+        >
+
+
+
+        <RadioButton
+            android:id="@+id/maleRadioButton"
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:outlineAmbientShadowColor="@color/white"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="20dp"
+            android:text="Male"
+            android:textSize="16sp"
+            android:buttonTint="@color/black" >
+
+
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/femaleRadioButton"
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="20dp"
+            android:text="Female"
+            android:textSize="16sp"
+            android:buttonTint="@color/black" >
+
+        </RadioButton>
+
+
+    </RadioGroup>
+
+
+
 
 
 
@@ -99,7 +151,7 @@
     android:id="@+id/emailInput"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/dobInput"
+    android:layout_below="@id/genderRadioGroup"
 
     android:layout_marginStart="30dp"
     android:layout_marginTop="5dp"

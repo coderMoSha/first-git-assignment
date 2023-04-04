@@ -2,16 +2,17 @@ package com.example.test1;
 
 public class EnterUserDetails {
 
-    public String fname ,lname , dob1;
+    public String fnameDB ,lnameDB , dobDB, genderDB;
 
 
 
 
-    public EnterUserDetails(String firstname, String lastname, String dob){
+    public EnterUserDetails(String firstname, String lastname, String dob, String gender){
 
-        this.fname = firstname;
-        this.lname = lastname;
-        this.dob1 = dob;
+        this.fnameDB = firstname;
+        this.lnameDB = lastname;
+        this.genderDB = gender;
+        this.dobDB = dob;
 
 
     }
