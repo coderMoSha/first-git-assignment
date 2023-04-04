@@ -38,7 +38,7 @@ public class Register extends AppCompatActivity {
 
         firstnameInput = findViewById(R.id.firstnameInput);
         lastnameInput = findViewById(R.id.lastnameInput);
-        dobInput = findViewById(R.id.emailInput);
+        dobInput = findViewById(R.id.dobInput);
         repassInput = findViewById(R.id.repassInput);
         passInput = findViewById(R.id.passInput);
         emailInput = findViewById(R.id.emailInput);
@@ -123,7 +123,9 @@ public class Register extends AppCompatActivity {
 
 
 
-                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registered Users");
+                                    DatabaseReference reference = FirebaseDatabase.getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
+                                            .getReference("Registered Users");
+
 
                                     reference.child(fbUser.getUid()).setValue(userDetail).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
