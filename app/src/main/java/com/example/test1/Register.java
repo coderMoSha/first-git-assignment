@@ -24,6 +24,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,6 +46,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     DatePickerDialog datePicker;
+    public static String TAG = "Register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +96,6 @@ public class Register extends AppCompatActivity {
 
                 long restrict18 = dobCalender.getTimeInMillis() - 410280000000L;
                 datePicker.getDatePicker().setMaxDate(restrict18);
-
 
                 datePicker.show();
             }
@@ -263,8 +266,25 @@ public class Register extends AppCompatActivity {
 
 
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(Register.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                                    try {
+                                        throw task.getException();
+
+                                    }catch (FirebaseAuthWeakPasswordException e){
+                                        passInput.setError("Password is too weak, Please use a mix of alphabets, numbers and special characters");
+                                        passInput.requestFocus();
+                                    }
+                                    catch (FirebaseAuthInvalidCredentialsException e){
+                                        emailInput.setError("Email is invalid or already in use");
+                                        emailInput.requestFocus();
+                                    }
+                                    catch (FirebaseAuthUserCollisionException e){
+                                        emailInput.setError("Email is already in use");
+                                        emailInput.requestFocus();
+                                    }
+                                    catch (Exception e) {
+                                        Log.e(TAG, e.getMessage());
+                                        Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });

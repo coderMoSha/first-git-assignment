@@ -9,7 +9,7 @@
     android:background="#4498A6">
 
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
@@ -25,7 +28,7 @@ public class Login extends AppCompatActivity {
     EditText emailInput, passInput;
     Button regButton, loginButton;
     FirebaseAuth mAuth;
-
+    public static String TAG = "Login";
 
     @Override
     public void onStart() {
@@ -110,7 +113,20 @@ public class Login extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(Login.this, "Log In Failed", Toast.LENGTH_SHORT).show();
+                                    try{
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidCredentialsException e) {
+
+
+                                        Toast.makeText(Login.this, "Invalid user, Please register", Toast.LENGTH_SHORT).show();
+                                        emailInput.requestFocus();
+                                    } catch (FirebaseAuthInvalidUserException e){
+                                        Toast.makeText(Login.this, "Invalid user, Please register", Toast.LENGTH_SHORT).show();
+                                        emailInput.requestFocus();
+                                    } catch (Exception e){
+                                        Log.e(TAG, e.getMessage());
+                                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
 
                                 }
                             }
