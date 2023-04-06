@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UploadProduct"
+    android:background="#4498A6">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="#97919F">
+        <ImageView
+        android:id="@+id/addProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please add image"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:layout_below="@id/addProductImage"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:id="@+id/addImageButton"
+
+            />
+
+        </RelativeLayout>
+
+    <EditText
+        android:id="@+id/addTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Title"
+        android:background="#794F6565"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/addDescription"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:hint="Description"
+        android:background="#794F6565"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/addPrice"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Price"
+        android:background="#794F6565"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        />
+
+    <EditText
+        android:id="@+id/addCondition"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Condition"
+        android:background="#794F6565"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:id="@+id/addLocation"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Location"
+        android:background="#794F6565"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <Button
+        android:id="@+id/listProductButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Create listing"
+        android:background="#C4FFFFFF"
+        android:textSize="20sp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="30dp"/>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,8 +1,10 @@
-package com.example.test1;
+package com.example.test1.viewmodels;
 
 public class EnterUserDetails {
 
     public String fnameDB ,lnameDB , dobDB, genderDB;
+
+    //public EnterUserDetails();
 
 
 
