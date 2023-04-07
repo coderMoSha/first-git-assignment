@@ -1,5 +1,6 @@
 package com.example.test1.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,9 @@ import android.widget.Toast;
 import com.example.test1.EnterProductDetails;
 import com.example.test1.R;
 import com.example.test1.viewmodels.EnterUserDetails;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -125,7 +128,7 @@ public class UploadProduct extends AppCompatActivity {
 
             private void addProductDataBase(String title, String price, String description, String condition, String location) {
 
-                final StorageReference uploadImage = storage.getReference("productImage" + new Random().nextInt(50));
+                final StorageReference uploadImage = storage.getReference("productImage/" +title + new Random().nextInt(50));
 
                 uploadImage.putFile(filepath)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -141,6 +144,32 @@ public class UploadProduct extends AppCompatActivity {
                                         FirebaseUser fbUser = mAuth.getCurrentUser();
                                         DatabaseReference reference = FirebaseDatabase.getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
                                                 .getReference("Products");
+
+                                        reference.child(fbUser.getUid()).setValue(productDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+
+
+
+
+                                                    fbUser.sendEmailVerification();
+                                                    Toast.makeText(UploadProduct.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+
+                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+                                                    startActivity(intent);
+                                                } else {
+
+                                                    Toast.makeText(UploadProduct.this, "Product listed!", Toast.LENGTH_SHORT).show();
+                                                }
+
+
+                                            }
+                                        });
 
 
                                     }
