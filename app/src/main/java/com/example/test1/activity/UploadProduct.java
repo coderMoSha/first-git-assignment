@@ -14,12 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.test1.EnterProductDetails;
+import com.example.test1.viewmodels.EnterProductDetails;
 import com.example.test1.R;
-import com.example.test1.viewmodels.EnterUserDetails;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -116,6 +114,8 @@ public class UploadProduct extends AppCompatActivity {
 
 
                     addProductDataBase(title, price, description, condition, location);
+
+                    listProductButton.setEnabled(false);
                 }
             }
 
@@ -139,13 +139,16 @@ public class UploadProduct extends AppCompatActivity {
                                     public void onSuccess(Uri uri) {
 
                                         String uridb = uri.toString();
+                                        String uniqueIdProduct = FirebaseDatabase.getInstance().getReference().push().getKey();
 
                                         EnterProductDetails productDetails = new EnterProductDetails(title, price, description, condition, location, uridb);
+
+                                        String uniqueIdProductDB = uniqueIdProduct+title;
                                         FirebaseUser fbUser = mAuth.getCurrentUser();
                                         DatabaseReference reference = FirebaseDatabase.getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
-                                                .getReference("Products");
+                                                .getReference("Products/"+ fbUser.getUid());
 
-                                        reference.child(fbUser.getUid()).setValue(productDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        reference.child(uniqueIdProductDB).setValue(productDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -153,18 +156,19 @@ public class UploadProduct extends AppCompatActivity {
 
 
 
-                                                    fbUser.sendEmailVerification();
-                                                    Toast.makeText(UploadProduct.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-
                                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
                                                     startActivity(intent);
+                                                    listProductButton.setEnabled(true);
                                                 } else {
 
-                                                    Toast.makeText(UploadProduct.this, "Product listed!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(UploadProduct.this, "Please fill the required field", Toast.LENGTH_SHORT).show();
+
+
+                                                     listProductButton.setEnabled(true);
                                                 }
 
 

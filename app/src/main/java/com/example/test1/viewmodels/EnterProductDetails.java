@@ -1,4 +1,4 @@
-package com.example.test1;
+package com.example.test1.viewmodels;
 
 import com.example.test1.viewmodels.EnterUserDetails;
 

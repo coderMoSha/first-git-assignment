@@ -41,6 +41,4 @@
         android:layout_below="@id/logoutButton"
         android:layout_gravity="center"
         android:src="@drawable/baseline_add_box_24" />
-
-
 </RelativeLayout>
