@@ -64,34 +64,80 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         fbUser = mAuth.getCurrentUser();
 
-
-
-        databaseReference = FirebaseDatabase
-                .getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
-                .getReference("Products/T0XyQYmfWzMT2R6hfI3pzwZqWKs2");
-
-
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
+                .getReference().child("Registered Users");
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    EnterProductDetails productDetails = postSnapshot.getValue(EnterProductDetails.class);
-                    dashboardUpload.add(productDetails);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    // This loop iterates through all subchildren under "Registered Users"
+                    String userId = childSnapshot.getKey();
+                    DatabaseReference userRef = usersRef.child(userId);
+                    // Now you have a reference to each subchild under "users"
+                    // Your code to read or write data to each subchild goes here
+
+                databaseReference = FirebaseDatabase
+                .getInstance("https://e-marcket-68d42-default-rtdb.europe-west1.firebasedatabase.app")
+                .getReference("Products/"+userId);
+
+
+
+                            databaseReference.addValueEventListener(new ValueEventListener() {
+                             @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                            EnterProductDetails productDetails = postSnapshot.getValue(EnterProductDetails.class);
+                            dashboardUpload.add(productDetails);
+
+                                    }
+                                    dashboardAdapter = new ProductDetailsAdapter(MainActivity.this, dashboardUpload);
+
+                                    productRecyclerView.setAdapter(dashboardAdapter);
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+
+                                }
+                            });
 
                 }
-                dashboardAdapter = new ProductDetailsAdapter(MainActivity.this, dashboardUpload);
-
-                productRecyclerView.setAdapter(dashboardAdapter);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-
+                // Handle error
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
        logoutButton.setOnClickListener(new View.OnClickListener() {
