@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.test1.viewmodels.EnterProductDetails;
 import com.example.test1.R;
+import com.example.test1.viewmodels.EnterProductDetails;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import com.karumi.dexter.Dexter;
@@ -42,13 +43,15 @@ import java.util.Random;
 
 public class UploadProduct extends AppCompatActivity {
 
-    ImageView addProductImage;
-    EditText addTitle, addDescription, addPrice, addCondition, addLocation;
-    Button listProductButton, addImageButton;
-    FirebaseAuth mAuth;
-    Uri filepath;
+    private ImageView addProductImage;
+    private EditText addTitle, addDescription, addPrice, addCondition, addLocation;
+    private Button listProductButton, addImageButton;
+    private  FirebaseAuth mAuth;
+    private Uri filepath;
 
-    Bitmap bitmap;
+    private Bitmap bitmap;
+
+    StorageTask uploadProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +102,17 @@ public class UploadProduct extends AppCompatActivity {
         listProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fbUser == null) {
+             /*   if (fbUser == null) {
                     Toast.makeText(UploadProduct.this, "User invalid!", Toast.LENGTH_SHORT).show();
 
-                } else {
+                }
+                else if(uploadProgress!=null && uploadProgress.isInProgress()){
+                    Toast.makeText(UploadProduct.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+
+
+                }
+
+                else {      */
 
                     String title, price, description, condition, location;
 
@@ -116,7 +126,7 @@ public class UploadProduct extends AppCompatActivity {
                     addProductDataBase(title, price, description, condition, location);
 
                     listProductButton.setEnabled(false);
-                }
+               // }
             }
 
 
@@ -130,7 +140,7 @@ public class UploadProduct extends AppCompatActivity {
 
                 final StorageReference uploadImage = storage.getReference("productImage/" +title + new Random().nextInt(50));
 
-                uploadImage.putFile(filepath)
+                uploadProgress =uploadImage.putFile(filepath)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
