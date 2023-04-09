@@ -166,7 +166,7 @@ public class UploadProduct extends AppCompatActivity {
 
 
 
-                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                    Intent intent = new Intent(getApplicationContext(), MainDashBoard.class);
 
                                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 

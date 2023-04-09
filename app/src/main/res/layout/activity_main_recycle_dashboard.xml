@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.test1.activity.MainActivity">
+    tools:context="com.example.test1.activity.MainDashBoard">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,17 +19,14 @@
         android:orientation="vertical">
 
 
-
         <Button
 
 
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_below="@id/productRecyclerView"
             android:backgroundTint="#C44A4246"
-
             android:text="Log Out" />
 
 
@@ -38,14 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/logoutButton"
-
             android:layout_gravity="bottom|right"
             android:src="@drawable/baseline_add_box_24" />
 
 
-
     </LinearLayout>
-
 
 
 </RelativeLayout>

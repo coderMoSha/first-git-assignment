@@ -248,7 +248,7 @@ public class Register extends AppCompatActivity {
                                                 fbUser.sendEmailVerification();
                                                 Toast.makeText(Register.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
 
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                Intent intent = new Intent(getApplicationContext(), MainDashBoard.class);
 
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -289,7 +289,7 @@ public class Register extends AppCompatActivity {
                         });
 
             }
-                    // }
+                    
 
 
 

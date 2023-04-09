@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainDashBoard extends AppCompatActivity {
 
 
     private RecyclerView productRecyclerView;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_dashboard);
+        setContentView(R.layout.activity_main_recycle_dashboard);
 
 
 
@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
                             dashboardUpload.add(productDetails);
 
                                     }
-                                    dashboardAdapter = new ProductDetailsAdapter(MainActivity.this, dashboardUpload);
+                                    dashboardAdapter = new ProductDetailsAdapter(MainDashBoard.this, dashboardUpload);
 
                                     productRecyclerView.setAdapter(dashboardAdapter);
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
-                                    Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainDashBoard.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
 
 

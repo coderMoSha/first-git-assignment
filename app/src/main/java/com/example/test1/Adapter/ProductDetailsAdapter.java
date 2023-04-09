@@ -1,6 +1,7 @@
 package com.example.test1.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.test1.R;
+import com.example.test1.activity.ProductPage;
 import com.example.test1.viewmodels.EnterProductDetails;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +33,7 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
     @NonNull
     @Override
     public ProductDetailsAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-     View v = LayoutInflater.from(mContext).inflate(R.layout.activity_main, parent,false);
+     View v = LayoutInflater.from(mContext).inflate(R.layout.activity_main_dashboard, parent,false);
 
        return new ProductViewHolder(v);
     }
@@ -43,7 +45,7 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
 
         EnterProductDetails uploadDetails = mUploads.get(position);
         holder.productNameTxt.setText(uploadDetails.getTitleDB());
-        holder.priceTxt.setText(uploadDetails.getPriceDB());
+        holder.priceTxt.setText("£"+uploadDetails.getPriceDB());
        Picasso.get()
                 .load(uploadDetails.getImageurlDB())
                 .placeholder(R.drawable.ic_launcher_background)
@@ -60,7 +62,9 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
         return mUploads.size();
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder{
+
+
+    public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView productNameTxt, priceTxt;
         public ImageView productImage;
@@ -71,10 +75,44 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
             productNameTxt = itemView.findViewById(R.id.productNameTxt);
             priceTxt =  itemView.findViewById((R.id.priceTxt));
             productImage =itemView.findViewById(R.id.productImage);
+            // set OnClickListener for the entire view
+            itemView.setOnClickListener(this);
 
 
 
         }
+
+        @Override
+        public void onClick(View v) {
+            // get the position of the clicked item
+            int position = getAdapterPosition();
+
+            // check if the position is valid
+            if (position != RecyclerView.NO_POSITION) {
+                // get the clicked product
+                EnterProductDetails uploadDetails = mUploads.get(position);
+
+                // create an intent to start the ProductDetailActivity
+                Intent intent = new Intent(v.getContext(), ProductPage.class);
+
+                // pass the product details to the intent as extra data
+                intent.putExtra("title", uploadDetails.getTitleDB());
+                intent.putExtra("imageUrl", uploadDetails.getImageurlDB());
+
+                // start the activity
+                v.getContext().startActivity(intent);
+
+            }
+            }
+        public void bind(EnterProductDetails uploadDetails) {
+            productNameTxt.setText(uploadDetails.getTitleDB());
+            Picasso.get().load(uploadDetails.getImageurlDB()).into(productImage);
+        }
     }
 
 }
+
+
+
+
+
