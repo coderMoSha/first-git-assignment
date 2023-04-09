@@ -67,7 +67,10 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
     public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView productNameTxt, priceTxt;
-        public ImageView productImage;
+
+        public TextView showTitle,showDescripition,showPrice,showCondition,showLocation;
+        public ImageView productImage,showProductImage;
+
 
 
         public ProductViewHolder(@NonNull View itemView) {
@@ -76,6 +79,15 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
             priceTxt =  itemView.findViewById((R.id.priceTxt));
             productImage =itemView.findViewById(R.id.productImage);
             // set OnClickListener for the entire view
+
+
+
+            showTitle =itemView.findViewById(R.id.showTitle);
+            showDescripition = itemView.findViewById(R.id.showDescription);
+            showPrice = itemView.findViewById(R.id.showPrice);
+            showCondition = itemView.findViewById(R.id.showCondition);
+            showLocation = itemView.findViewById(R.id.showLocation);
+            showProductImage = itemView.findViewById(R.id.showProductImage);
             itemView.setOnClickListener(this);
 
 
@@ -98,6 +110,10 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
                 // pass the product details to the intent as extra data
                 intent.putExtra("title", uploadDetails.getTitleDB());
                 intent.putExtra("imageUrl", uploadDetails.getImageurlDB());
+                intent.putExtra("price",uploadDetails.getPriceDB());
+                intent.putExtra("location",uploadDetails.getLocationDB());
+                intent.putExtra("description",uploadDetails.getDescriptionDB());
+                intent.putExtra("condition",uploadDetails.getConditionDB());
 
                 // start the activity
                 v.getContext().startActivity(intent);
@@ -105,8 +121,13 @@ ProductDetailsAdapter extends RecyclerView.Adapter<ProductDetailsAdapter.Product
             }
             }
         public void bind(EnterProductDetails uploadDetails) {
-            productNameTxt.setText(uploadDetails.getTitleDB());
-            Picasso.get().load(uploadDetails.getImageurlDB()).into(productImage);
+            showTitle.setText(uploadDetails.getTitleDB());
+            showDescripition.setText(uploadDetails.getDescriptionDB());
+            showPrice.setText(uploadDetails.getPriceDB());
+            showCondition.setText(uploadDetails.getConditionDB());
+            showLocation.setText(uploadDetails.getLocationDB());
+            Picasso.get().load(uploadDetails.getImageurlDB()).into(showProductImage);
+
         }
     }
 

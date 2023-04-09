@@ -73,7 +73,7 @@ public class MainDashBoard extends AppCompatActivity {
                     // This loop iterates through all subchildren under "Registered Users"
                     String userId = childSnapshot.getKey();
                     DatabaseReference userRef = usersRef.child(userId);
-                    // Now you have a reference to each subchild under "users"
+                    // Now you have a reference to each subchild under "Registered users"
                     // Your code to read or write data to each subchild goes here
 
                 databaseReference = FirebaseDatabase
@@ -82,7 +82,7 @@ public class MainDashBoard extends AppCompatActivity {
 
 
 
-                            databaseReference.addValueEventListener(new ValueEventListener() {
+                databaseReference.addValueEventListener(new ValueEventListener() {
                              @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
@@ -114,32 +114,6 @@ public class MainDashBoard extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +130,7 @@ public class MainDashBoard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UploadProduct.class);
                 startActivity(intent);
-                finish();
+                //finish();
 
             }
         });

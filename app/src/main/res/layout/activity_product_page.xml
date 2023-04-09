@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4498A6"
     tools:context=".activity.ProductPage">
 
     <LinearLayout
@@ -47,8 +48,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#794F6565"
-             />
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/showDescription"
@@ -57,8 +59,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#794F6565"
-            android:hint="Description" />
+            android:hint="Description"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/showPrice"
@@ -67,8 +70,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#794F6565"
-            android:hint="Price" />
+            android:textColor="@color/white"
+            android:hint="Price"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/showCondition"
@@ -77,8 +81,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#794F6565"
-            android:hint="Condition" />
+            android:hint="Condition"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/showLocation"
@@ -87,8 +92,10 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:background="#794F6565"
-            android:hint="Location" />
+            android:hint="Location"
+
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/backToDashboardButton"
