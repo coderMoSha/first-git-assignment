@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.UploadProduct">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@color/white"
+                android:padding="10dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/addProductImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addProductImage"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Please Add Images"
+                    android:background="@drawable/bg_field"
+                    android:backgroundTint="@color/main"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="20dp"
+                    android:textSize="16sp"
+                    android:textAllCaps="false" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/addTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:hint="Title"
+            android:padding="14dp"
+            android:background="@drawable/bg_field"
+            android:textColorHint="@color/main"
+            android:textColor="@color/main"/>
+
+        <EditText
+            android:id="@+id/addDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_field"
+            android:textColorHint="@color/main"
+            android:textColor="@color/main"
+            android:padding="14dp"
+            android:hint="Description" />
+
+        <EditText
+            android:id="@+id/addPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_field"
+            android:textColorHint="@color/main"
+            android:textColor="@color/main"
+            android:padding="14dp"
+            android:hint="Price" />
+
+        <EditText
+            android:id="@+id/addCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_field"
+            android:textColorHint="@color/main"
+            android:textColor="@color/main"
+            android:padding="14dp"
+            android:hint="Condition" />
+
+        <EditText
+            android:id="@+id/addLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_field"
+            android:textColorHint="@color/main"
+            android:textColor="@color/main"
+            android:padding="14dp"
+            android:hint="Location" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/listProductButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_field"
+            android:backgroundTint="@color/main"
+            android:text="Create listing"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+
+    </LinearLayout>
+
+</ScrollView>
